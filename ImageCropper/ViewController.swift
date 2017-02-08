@@ -8,16 +8,39 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,AKImageCropperViewDelegate {
+    
+    @IBOutlet weak var cropView: AKImageCropperView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        cropView.image = UIImage(named: "shumpei.jpg")
+        
+        
+        if cropView.overlayViewIsActive {
+            
+            cropView.dismissOverlayViewAnimated(true) { () -> Void in
+                
+                print("Frame disabled")
+            }
+        } else {
+            
+            cropView.showOverlayViewAnimated(true, withCropFrame: nil, completion: { () -> Void in
+                
+                print("Frame active")
+            })
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        cropView.refresh()
     }
 
 
