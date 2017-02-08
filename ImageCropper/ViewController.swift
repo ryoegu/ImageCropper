@@ -11,6 +11,9 @@ import UIKit
 class ViewController: UIViewController,AKImageCropperViewDelegate {
     
     @IBOutlet weak var cropView: AKImageCropperView!
+    
+    @IBOutlet var label: UILabel!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
